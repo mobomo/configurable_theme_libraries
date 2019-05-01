@@ -1,0 +1,22 @@
+{
+  "name": "drupal/configurable_theme_libraries",
+  "type": "drupal-module",
+  "description": "Provides the ability to define configurable libraries in your theme which can be configured in theme settings.",
+  "keywords": ["Drupal", "Theming", "Theme Enhancements", "Developer", "Site Building"],
+  "authors": [
+    {
+      "name": "Steven Buteneers",
+      "homepage": "https://www.drupal.org/u/steven-buteneers",
+      "role": "Maintainer"
+    }
+  ],
+  "homepage": "https://www.drupal.org/project/configurable_theme_libraries",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/configurable_theme_libraries?version=8.x",
+    "source": "http://cgit.drupalcode.org/configurable_theme_libraries"
+  },
+  "license": "GPL-2.0+",
+  "require": {
+    "php": "^7.1"
+  }
+}

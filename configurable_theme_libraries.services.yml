@@ -1,0 +1,13 @@
+services:
+  configurable_theme_libraries.manager:
+    class: Drupal\configurable_theme_libraries\ConfigurableThemeLibrariesManager
+    arguments: ['@theme_handler']
+  info_parser.configurable_theme_libraries:
+    public: false
+    class: Drupal\configurable_theme_libraries\Extension\ConfigurableThemeLibrariesInfoParser
+    decorates: info_parser
+  theme.initialization.configurable_theme_libraries:
+    public: false
+    class: Drupal\configurable_theme_libraries\Theme\ThemeInitialization
+    decorates: theme.initialization
+    parent: theme.initialization

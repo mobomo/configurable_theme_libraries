@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Allows users to enable or disable configurable theme libraries.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function configurable_theme_libraries_form_system_theme_settings_alter(array &$form, FormStateInterface $form_state): void {
+  $info = $form_state->getBuildInfo();
+  if (!isset($info['args'][0])) {
+    return;
+  }
+
+  /** @var \Drupal\configurable_theme_libraries\ConfigurableThemeLibrariesManagerInterface $manager */
+  $manager = Drupal::service('configurable_theme_libraries.manager');
+  $form = array_merge($form, $manager->getConfigurableLibrariesForm($info['args'][0]));
+}
