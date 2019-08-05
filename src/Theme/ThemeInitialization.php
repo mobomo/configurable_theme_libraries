@@ -13,6 +13,11 @@ use Drupal\Core\Theme\ThemeInitialization as CoreThemeInitialization;
  */
 class ThemeInitialization extends CoreThemeInitialization {
 
+  /**
+   * The active theme values.
+   *
+   * @var array
+   */
   protected $activeThemeValues;
 
   /**
@@ -33,23 +38,25 @@ class ThemeInitialization extends CoreThemeInitialization {
       'stylesheets_remove' => $active_theme->getStyleSheetsRemove(),
       'libraries' => $active_theme->getLibraries(),
       'extension' => $active_theme->getExtension(),
-      'base_themes' => $active_theme->getBaseThemes(),
-      'regions' => $active_theme->getRegions(),
+      'base_theme_extensions' => $active_theme->getBaseThemeExtensions(),
+      'regions' => $theme->info['regions'] ?? [],
       'libraries_override' => $active_theme->getLibrariesOverride(),
       'libraries_extend' => $active_theme->getLibrariesExtend(),
     ];
 
+    $overridden = FALSE;
     foreach ($theme->info['configurable-libraries'] as $id => $configurable_library) {
       if (!ConfigurableThemeLibrariesManager::isEnabled($theme->getName(), $id)) {
         continue;
       }
 
+      $overridden = TRUE;
       $this->addLibrariesOverride($configurable_library, $theme);
       $this->addLibrariesExtend($configurable_library);
       $this->addLibraries($configurable_library);
     }
 
-    return new ActiveTheme($this->activeThemeValues);
+    return $overridden ? new ActiveTheme($this->activeThemeValues) : $active_theme;
   }
 
   /**
