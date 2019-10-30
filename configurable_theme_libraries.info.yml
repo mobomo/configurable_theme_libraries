@@ -2,5 +2,6 @@ name: Configurable Theme Libraries
 type: module
 description: Provides the ability to define configurable libraries in your theme which can be configured in theme settings.
 core: 8.x
+core_version_requirement: ^8 || ^9
 php: '7.1'
 package: Theming

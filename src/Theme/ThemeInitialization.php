@@ -35,7 +35,7 @@ class ThemeInitialization extends CoreThemeInitialization {
       'engine' => $active_theme->getEngine(),
       'owner' => $active_theme->getOwner(),
       'logo' => $active_theme->getLogo(),
-      'stylesheets_remove' => $active_theme->getStyleSheetsRemove(),
+      'stylesheets_remove' => $this->prepareStylesheetsRemove($theme, $base_themes),
       'libraries' => $active_theme->getLibraries(),
       'extension' => $active_theme->getExtension(),
       'base_theme_extensions' => $active_theme->getBaseThemeExtensions(),
